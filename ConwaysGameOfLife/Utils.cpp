@@ -6,8 +6,8 @@ void CheckStartInput(std::string input_text, bool& first_input_flag);
 void StartGame();
 void InGame();
 void EndGame();
-void CheckInGameInput(std::string input_text, int &grid_size, int &alive_squares, int &number_of_iterations);
-void CreateGridCall(int grid_size, int alive_squares, int number_of_iterations);
+void CheckInGameInput(std::string input_text, int &grid_height, int &grid_width, int &alive_squares, int &number_of_iterations);
+void CreateGridCall(int grid_height, int grid_width, int alive_squares, int number_of_iterations);
 
 void StartGame() {
     bool first_input_flag = false;
@@ -28,7 +28,8 @@ void InGame() {
     std::string input_text = "";
     
     // Variables to be filled by user
-    int grid_size = 0;
+    int grid_height = 0;
+    int grid_width = 0;
     int alive_squares = 0;
     int number_of_iterations = 0;
 
@@ -52,7 +53,7 @@ void InGame() {
         }
         else {
             // Pass the grid variables to the command handler
-            CheckInGameInput(input_text, grid_size, alive_squares, number_of_iterations);
+            CheckInGameInput(input_text, grid_height, grid_width, alive_squares, number_of_iterations);
         }
     }
 }
@@ -73,7 +74,7 @@ void CheckStartInput(std::string input_text, bool& first_input_flag) {
     }
 }
 
-void CheckInGameInput(std::string input_text, int& grid_size, int& alive_squares, int& number_of_iterations) {
+void CheckInGameInput(std::string input_text, int &grid_height, int &grid_width, int &alive_squares, int &number_of_iterations) {
     if (input_text == "help") {
         std::cout << std::endl;
         std::cout << "The Game of Life, also known simply as Life, is a cellular automaton devised by John Horton Conway in 1970." << std::endl;
@@ -86,8 +87,10 @@ void CheckInGameInput(std::string input_text, int& grid_size, int& alive_squares
     }
     else if (input_text == "create") {
         // Ask the user for grid parameters
-        std::cout << "Enter grid size: ";
-        std::cin >> grid_size;
+        std::cout << "Enter the height of the grid: ";
+        std::cin >> grid_height;
+        std::cout << "Enter the width of the grid: ";
+        std::cin >> grid_width;
         std::cout << "Enter the number of alive squares: ";
         std::cin >> alive_squares;
         std::cout << "Enter the number of iterations: ";
@@ -96,7 +99,7 @@ void CheckInGameInput(std::string input_text, int& grid_size, int& alive_squares
         std::cout << "Creating the grid..." << std::endl;
 
         // Call the function to create the grid with user inputs
-        CreateGridCall(grid_size, alive_squares, number_of_iterations);
+        CreateGridCall(grid_height, grid_width, alive_squares, number_of_iterations);
     }
     else if (input_text == "display") {
         // Code to display the grid
@@ -113,6 +116,6 @@ void CheckInGameInput(std::string input_text, int& grid_size, int& alive_squares
     }
 }
 
-void CreateGridCall(int grid_size, int alive_squares, int number_of_iterations) {
-    CreateGrid(grid_size, alive_squares, number_of_iterations);
+void CreateGridCall(int grid_height, int grid_width, int alive_squares, int number_of_iterations) {
+    CreateGrid(grid_height, grid_width, alive_squares, number_of_iterations);
 }
