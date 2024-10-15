@@ -1,2 +1,4 @@
-﻿  Utils.cpp
-  ConwaysGameOfLife.vcxproj -> C:\Users\C4042004\source\repos\ConwaysGameOfLife\x64\Debug\ConwaysGameOfLife.exe
+﻿  Grid.cpp
+C:\Users\harsh\source\repos\ConwaysGameOfLife\ConwaysGameOfLife\Grid.cpp(20,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\harsh\source\repos\ConwaysGameOfLife\ConwaysGameOfLife\Grid.cpp(48,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  ConwaysGameOfLife.vcxproj -> C:\Users\harsh\source\repos\ConwaysGameOfLife\x64\Debug\ConwaysGameOfLife.exe
