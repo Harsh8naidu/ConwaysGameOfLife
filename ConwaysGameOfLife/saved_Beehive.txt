@@ -1,0 +1,288 @@
+Iteration 1:
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+          OO                  
+          OO                  
+                              
+                              
+       OO                     
+   OO  OO OO                  
+   OO     OOO                 
+           O                  
+           OOO                
+  OO        O                 
+    O       O O               
+  OO         O                
+   O         O                
+   O O                        
+  O    O                      
+  O     OO                    
+  OO O        OOO             
+      O OO   OOO              
+              O               
+
+Iteration 2:
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+          OO                  
+          OO                  
+                              
+                              
+       OOO                    
+   OO  OO O O                 
+   OO    O  O                 
+             O                
+           O O                
+   O                          
+    O       O                 
+  OOO       OOO               
+   O                          
+  OOO                         
+  OO    O                     
+ OO     O      O              
+  OO   O     O  O             
+             O  O             
+             OOO              
+
+Iteration 3:
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+          OO                  
+          OO                  
+                              
+        O                     
+       O O                    
+   OO  O  OO                  
+   OO   OO OOO                
+             O                
+            O                 
+            O                 
+  O O       O                 
+  O O       OO                
+             O                
+    O                         
+    O                         
+ O     OO                     
+ OOO          OOO             
+            OO  O             
+             OOO              
+
+Iteration 4:
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+          OO                  
+          OO                  
+                              
+        O                     
+       O OO                   
+   OO  O   O                  
+   OO   OO O O                
+           O O                
+            OO                
+           OOO                
+           OO                 
+            OO                
+   O        OO                
+                              
+                              
+ O O           O              
+ OO          OOOO             
+  O         O   O             
+            OOOO              
+
+Iteration 5:
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+          OO                  
+          OO                  
+                              
+        OO                    
+       O OO                   
+   OO  O   OO                 
+   OO   O  O                  
+          OO OO               
+              O               
+                              
+                              
+                              
+            OO                
+                              
+                              
+ O             OO             
+ O O         OO O             
+ OO         O   O             
+            OOOO              
+
+Iteration 6:
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+          OO                  
+          OO                  
+         OO                   
+        OOO                   
+       O OOO                  
+   OO  O O OO                 
+   OO        O                
+          OOOOO               
+             OO               
+                              
+                              
+                              
+                              
+                              
+                              
+  O           OOO             
+OO           OO OO            
+ OO         O   O             
+            OOOO              
+
+Iteration 7:
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+          OO                  
+                              
+        O                     
+                              
+       O    O                 
+   OO    O OO                 
+   OO         O               
+           O                  
+           O  O               
+                              
+                              
+                              
+                              
+                              
+               O              
+ O           OO OO            
+O            OO  O            
+OOO         O   OO            
+            OOOO              
+
+Iteration 8:
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+           OO                 
+   OO      OOO                
+   OO     OOO                 
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+              OOO             
+             O  OO            
+O O         O O   O           
+OO          O   OO            
+ O          OOOOO             
+
+Iteration 9:
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+           O O                
+   OO        O                
+   OO     O  O                
+           O                  
+                              
+                              
+                              
+                              
+                              
+               O              
+              OOOO            
+             O  OO            
+O           O  O  O           
+O O        OO   OO            
+OO          OOOOOO            
+

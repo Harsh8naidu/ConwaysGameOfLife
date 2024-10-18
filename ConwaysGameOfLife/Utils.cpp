@@ -33,6 +33,8 @@ void StartGame() {
 
 void InGame() {
     std::string input_text = "";
+    bool is_normal = true;
+    std::string target_shape = "";
 
     // Display commands as soon as the game starts
     std::cout << std::endl;
@@ -53,44 +55,55 @@ void InGame() {
         // Run the normal simulation
         std::cout << "Running a normal simulation..." << std::endl;
         std::cout << std::endl;
-
-        std::cout << "Type 'create' to create a grid." << std::endl;
+        is_normal = true;
     }
     else if (input_text == "2") {
+        is_normal = false;
         // Run the experiment
-        int target_shape = 0;
-        std::cout << "Q2: Block or Beehive" << std::endl;
-        std::cout << "Q3: Blinker or Toad" << std::endl;
-        std::cout << "Q4: Glider or LWSS" << std::endl;
+        std::cout << "These are the following shapes you can find in the experiment: " << std::endl;
+        std::cout << "Block" << std::endl;
+        std::cout << "Beehive" << std::endl;
+        std::cout << "Blinker" << std::endl;
+        std::cout << "Toad" << std::endl;
+        std::cout << "Glider" << std::endl;
+        std::cout << "LWSS" << std::endl;
 
-        std::cout << "Enter the question number (Q2, Q3, Q4): ";
-        std::cin >> input_text;
+        std::cout << "Enter the name of the shape you want to find: ";
+        std::cin >> target_shape;
 
-        if (input_text == "Q2") {
-            std::cout << "Running experiment to find Block or Beehive..." << std::endl;
-            target_shape = 2;
-        }
-        else if (input_text == "Q3") {
-            std::cout << "Running experiment to find Blinker or Toad..." << std::endl;
-            target_shape = 3;
-        }
-        else if (input_text == "Q4") {
-            std::cout << "Running experiment to find Glider or LWSS..." << std::endl;
-            target_shape = 4;
-        }
-        else {
+        // Validate the target shape input
+        if (target_shape != "Block" && target_shape != "Beehive" && target_shape != "Blinker" &&
+            target_shape != "Toad" && target_shape != "Glider" && target_shape != "LWSS") {
             std::cout << "Invalid choice. Exiting..." << std::endl;
             return; // Exit the function
         }
 
-        std::cout << "Enter grid height (greater than 30): ";
-        std::cin >> grid_height;
-        std::cout << "Enter grid width (greater than 30): ";
-        std::cin >> grid_width;
-        std::cout << "Enter the number of starting alive squares (greater than 25): ";
-        std::cin >> alive_squares;
+        std::cout << "Do you want to (1) load the existing file for " << target_shape << " or (2) run a new experiment? (Enter 1 or 2): ";
+        std::string choice;
+        std::cin >> choice;
 
-        RunExperiment(grid_height, grid_width, alive_squares, 10, target_shape);  // Adjust the number of iterations
+        if (choice == "1") {
+            // Load the existing file for the target shape
+            std::string filename = "saved_" + target_shape + ".txt";
+            std::cout << "Loading the file: " << filename << std::endl;
+            LoadIterationsFromFile(filename); // Load the iterations from the saved file
+        }
+        else if (choice == "2") {
+            std::cout << "Running experiment to find " << target_shape << "..." << std::endl;
+            // Continue with the code to run a new experiment
+            std::cout << "Enter grid height (greater than 30): ";
+            std::cin >> grid_height;
+            std::cout << "Enter grid width (greater than 30): ";
+            std::cin >> grid_width;
+            std::cout << "Enter the number of starting alive squares (greater than 25): ";
+            std::cin >> alive_squares;
+
+            RunExperiment(grid_height, grid_width, alive_squares, 10, target_shape);  // Adjust the number of iterations
+        }
+        else {
+            std::cout << "Invalid choice. Exiting..." << std::endl;
+            return; // Exit the function if input is invalid
+        }
     }
     else {
         std::cout << "Invalid choice. Exiting..." << std::endl;
@@ -139,14 +152,27 @@ void InGame() {
             }
         }
         else if (input_text == "load") {
-            std::cout << "Loading the grid..." << std::endl;
-            LoadGrid(grid, grid_height, grid_width, number_of_iterations);
+            std::string filename;
+            if (!is_normal) {
+                filename = "saved_" + target_shape + ".txt";
+                std::cout << "Loading the file: " << filename << std::endl;
+                LoadIterationsFromFile(filename);
+            }
+            else {
+                std::cout << "Enter the file name to load (without extension): ";
+                std::cin >> filename;
+                filename += ".txt"; // Append the extension
+                std::cout << "Loading the file: " << filename << std::endl;
+                LoadGrid(grid, grid_height, grid_width, number_of_iterations);  // Assuming LoadGrid uses the provided filename
+            }
         }
         else {
-            std::cout << "Invalid command! Please type 'help', 'display', 'create', 'iterate', or 'quit' and press enter." << std::endl;
+            std::cout << "Invalid command! Please type 'help', 'create', 'save', 'load', or 'quit' and press enter." << std::endl;
         }
     }
 }
+
+
 
 
 void EndGame() {

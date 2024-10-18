@@ -12,7 +12,9 @@ void CreateGrid(int grid_height, int grid_width, int alive_squares, int number_o
 bool LoadGrid(std::vector<std::vector<char>>& grid, int& grid_height, int& grid_width, int& number_of_iterations);
 void SaveGrid(const std::vector<std::vector<char>>& grid, int grid_height, int grid_width, int number_of_iterations);
 void PrintGrid(const std::vector<std::vector<char>>& grid, int grid_height, int grid_width);
-void RunExperiment(int grid_height, int grid_width, int alive_squares, int number_of_iterations, int target_shape);
+void RunExperiment(int grid_height, int grid_width, int alive_squares, int number_of_iterations, std::string target_shape);
+void SaveIterationsToFile(const std::vector<std::vector<std::vector<char>>>& iterations, const std::string& filename);
+void LoadIterationsFromFile(const std::string& filename);
 
 
 #endif

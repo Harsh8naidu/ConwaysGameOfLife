@@ -1,7 +1,2 @@
-﻿  ConwaysGameOfLife.cpp
-  Grid.cpp
-C:\Users\harsh\source\repos\ConwaysGameOfLife\ConwaysGameOfLife\Grid.cpp(153,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\harsh\source\repos\ConwaysGameOfLife\ConwaysGameOfLife\Grid.cpp(154,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Utils.cpp
-  Generating Code...
+﻿  Utils.cpp
   ConwaysGameOfLife.vcxproj -> C:\Users\harsh\source\repos\ConwaysGameOfLife\x64\Debug\ConwaysGameOfLife.exe

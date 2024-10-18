@@ -1,0 +1,68 @@
+Iteration 1:
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                  O             
+                 O O    OO      
+                  OOO  OO O     
+                   OOO    OO    
+                     O   O      
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+
+Iteration 2:
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                  O             
+                 O  O  OOO      
+                     O OO OO    
+                  O  OO O OO    
+                     O    O     
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+

@@ -17,6 +17,8 @@ int experiment_count = 0;
 
 bool HasAliveCells(const std::vector<std::vector<char>>& grid);
 void ClearConsole();
+void SaveIterationsToFile(const std::vector<std::vector<std::vector<char>>>& iterations, const std::string& filename);
+void LoadIterationsFromFile(const std::string& filename);
 
 // Function to print the grid
 void PrintGrid(const std::vector<std::vector<char>>& grid, int grid_height, int grid_width) {
@@ -168,7 +170,7 @@ bool MatchesShape(const std::vector<std::vector<char>>& grid, const std::vector<
 }
 
 // Function to check the grid for any shape like a block or beehive
-std::string CheckForShapes(const std::vector<std::vector<char>>& grid, int target_shape) {
+std::string CheckForShapes(const std::vector<std::vector<char>>& grid, std::string target_shape) {
     // Define patterns
     std::vector<std::vector<char>> block = {
         {'O', 'O'},
@@ -193,36 +195,37 @@ std::string CheckForShapes(const std::vector<std::vector<char>>& grid, int targe
     };
 
     std::vector<std::vector<char>> glider = {
+        {'O', 'O', 'O'},
         {'O', ' ', ' '},
-        {' ', 'O', 'O'},
-        {'O', 'O', ' '}
+        {' ', 'O', ' '}
     };
 
     std::vector<std::vector<char>> LWSS = {
-        {'O', 'O', ' ', 'O'},
-        {' ', ' ', 'O', 'O'},
-        {'O', 'O', 'O', ' '}
+        {' ', 'O', ' ', ' ', 'O'},
+        {'O', ' ', ' ', ' ', ' '},
+        {'O', ' ', ' ', ' ', 'O'},
+        {'O', 'O', 'O', 'O', ' '}
     };
 
     // Check for shapes
     for (int i = 0; i < grid.size(); ++i) {
         for (int j = 0; j < grid[0].size(); ++j) {
-            if (target_shape == 2 && MatchesShape(grid, block, i, j)) {
+            if (target_shape == "Block" && MatchesShape(grid, block, i, j)) {
                 return "Block";
             }
-            else if (target_shape == 2 && MatchesShape(grid, beehive, i, j)) {
+            else if (target_shape == "Beehive" && MatchesShape(grid, beehive, i, j)) {
                 return "Beehive";
             }
-            else if (target_shape == 3 && MatchesShape(grid, blinker, i, j)) {
+            else if (target_shape == "Blinker" && MatchesShape(grid, blinker, i, j)) {
                 return "Blinker";
             }
-            else if (target_shape == 3 && MatchesShape(grid, toad, i, j)) {
+            else if (target_shape == "Toad" && MatchesShape(grid, toad, i, j)) {
                 return "Toad";
             }
-            else if (target_shape == 4 && MatchesShape(grid, glider, i, j)) {
+            else if (target_shape == "Glider" && MatchesShape(grid, glider, i, j)) {
                 return "Glider";
             }
-            else if (target_shape == 4 && MatchesShape(grid, LWSS, i, j)) {
+            else if (target_shape == "LWSS" && MatchesShape(grid, LWSS, i, j)) {
                 return "LWSS";
             }
         }
@@ -245,7 +248,74 @@ void MoveCursorUp(int lines) {
     std::cout << "\033[" << lines << "A"; // ANSI escape code to move up
 }
 
-void RunExperiment(int grid_height, int grid_width, int alive_squares, int number_of_iterations, int target_shape) {
+// Function to save iterations to a file
+void SaveIterationsToFile(const std::vector<std::vector<std::vector<char>>>& iterations, const std::string& filename) {
+    std::ofstream outFile(filename);
+    if (!outFile) {
+        std::cerr << "Error opening file for writing: " << filename << std::endl;
+        return;
+    }
+
+    for (int i = 0; i < iterations.size(); ++i) {
+        outFile << "Iteration " << i + 1 << ":\n";
+        for (const auto& row : iterations[i]) {
+            for (const auto& cell : row) {
+                outFile << cell;
+            }
+            outFile << '\n';
+        }
+        outFile << '\n';  // Separate iterations with a blank line
+    }
+
+    outFile.close();
+}
+
+// Function to load and display iterations from a file
+void LoadIterationsFromFile(const std::string& filename) {
+    std::ifstream inFile(filename);
+    if (!inFile) {
+        std::cerr << "Error opening file for reading: " << filename << std::endl;
+        return;
+    }
+
+    std::vector<std::string> grid_lines;
+    std::string line;
+
+    // Read each line of the file
+    while (std::getline(inFile, line)) {
+        if (line.find("Iteration") != std::string::npos) {
+            std::cout << line << std::endl;  // Print iteration header
+        }
+        else {
+            grid_lines.push_back(line);  // Store grid lines for processing
+        }
+    }
+    inFile.close();
+
+    // Process each stored grid line to decide where to place full stops
+    for (const auto& grid_line : grid_lines) {
+        std::string processed_line;
+        for (int i = 0; i < grid_line.size(); ++i) {
+            char c = grid_line[i];
+            if (c == 'O') {
+                processed_line += 'O';  // Keep alive cell
+            }
+            else {
+                // Decide if this is a corner that should have a full stop
+                if (i % 2 == 0) {  // Assuming even index is a corner
+                    processed_line += '.';
+                }
+                else {
+                    processed_line += ' ';  // Otherwise, it's an empty space
+                }
+            }
+        }
+        std::cout << processed_line << std::endl;  // Print processed line with full stops
+    }
+}
+
+
+void RunExperiment(int grid_height, int grid_width, int alive_squares, int number_of_iterations, std::string target_shape) {
     bool pattern_found = false;
 
     while (!pattern_found) {
@@ -299,11 +369,11 @@ void RunExperiment(int grid_height, int grid_width, int alive_squares, int numbe
                 pattern_found = true;
 
                 // Print all saved iterations that led to this pattern
-                std::cout << "Displaying the series of grids leading to the pattern:\n";
-                for (int i = 0; i < iterations.size(); ++i) {
-                    std::cout << "Iteration " << i + 1 << ":\n";
-                    PrintGrid(iterations[i], grid_height, grid_width);
-                }
+                std::cout << "Saving the series of grids leading to the pattern:\n";
+                std::string filename = "saved_" + result + ".txt";
+                SaveIterationsToFile(iterations, filename);
+
+                std::cout << "Iterations saved in " << filename << std::endl;
                 break;
             }
 
@@ -315,6 +385,8 @@ void RunExperiment(int grid_height, int grid_width, int alive_squares, int numbe
         }
     }
 }
+
+
 
 // Function to check if there are any alive cells in the grid
 bool HasAliveCells(const std::vector<std::vector<char>>& grid) {
